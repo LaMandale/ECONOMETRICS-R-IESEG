@@ -172,7 +172,8 @@ plot(sim4, main="ARMA(0,3)", col="blue")
 
 #--------#
 #7.	Using the residuals from the regression in Step 6:
-
+acf(model$residuals, type = "correlation")
+Box.test(resid(fit1),type="Ljung",lag=20,fitdf=1) changer fit1
 #--------#
 #8.	Perform an out-of-sample forecast of the quarters 2020Q1 until 2020Q4. 
 
