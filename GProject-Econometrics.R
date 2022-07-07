@@ -147,7 +147,8 @@ ARMARGDP16 <- arima(RGDP, order = c(3,0,3))
 #c.
 #--------#
 #6.	Perform the ARMA regression that you determined in Step 5c. Show the table of results in your report (no need to comment on these results for now).
-
+ARMARGDP1 <- arima(RGDP, order = c(0,0,1))
+print(ARMARGDP1)
 #--------#
 #7.	Using the residuals from the regression in Step 6:
 resid <- residuals(ARMARGDP1)
