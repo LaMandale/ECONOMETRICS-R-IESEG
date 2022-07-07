@@ -123,50 +123,28 @@ acf(rv_dataPAGE3$GPD)
 pacf(rv_dataPAGE3$GPD)
 #--------#
 #5.	Compute several ARMA models, each time by changing the parameter p and the parameter q, and record the AIC (Akaike information criterion).
+#a.
 
-#Define the zero paramater
-inf <- 0.1/10^99
+RGDP <- Delt(rv_dataPAGE3$GPD)
 
-# Run a white noise Process
-eps<-rnorm(500, 0, 1)
-
-#Running Sim1 Arma (0:0)
-sim1 <- arima.sim(list(ar=c(inf),ma=c(inf)),n=500,innov=eps)
-
-#Finding best AIC fit using forecast library
-sim1bestfit <- auto.arima(sim1)
-print(sim1bestfit)
-
-#We filter the important value = AIC. 
-#And we save it into a variable
-AICsim1 <- sim1bestfit$aic
-
-# Repeat the process for Sim2 Arma(0:1)
-sim2 <- arima.sim(list(ar=c(inf),ma=c(1)),n=500,innov=eps)
-sim2bestfit <- auto.arima(sim2)
-print(sim2bestfit)
-AICsim2 <- sim2bestfit$aic
-
-# Repeat the process for Sim2 Arma(0:2)
-sim3 <- arima.sim(list(ar=c(inf),ma=c(2)),n=500,innov=eps)
-sim3bestfit <- auto.arima(sim3)
-print(sim3bestfit)
-AICsim3 <- sim3bestfit$aic
-
-# Repeat the process for Sim2 Arma(0:3)
-sim4 <- arima.sim(list(ar=c(inf),ma=c(3)),n=500,innov=eps)
-sim4bestfit <- auto.arima(sim4)
-print(sim4bestfit)
-AICsim4 <- sim4bestfit$aic
-
-
-# We made plots to summarize all ARMA into one place
-par(mfrow=c(2,2)) # 2x2 array of plots
-plot(sim1, main="ARMA(0,0)", col="blue")
-plot(sim2, main="ARMA(0,1)", col="blue")
-plot(sim3, main="ARMA(0,2)", col="blue")
-plot(sim4, main="ARMA(0,3)", col="blue")
-
+ARMARGDP <- arima(RGDP, order = c(0,0,0))
+ARMARGDP1 <- arima(RGDP, order = c(0,0,1))
+ARMARGDP2 <- arima(RGDP, order = c(0,0,2))
+ARMARGDP3 <- arima(RGDP, order = c(0,0,3))
+ARMARGDP10 <- arima(RGDP, order = c(1,0,0))
+ARMARGDP4 <- arima(RGDP, order = c(1,0,1))
+ARMARGDP5 <- arima(RGDP, order = c(1,0,2))
+ARMARGDP6 <- arima(RGDP, order = c(1,0,3))
+ARMARGDP11 <- arima(RGDP, order = c(2,0,0))
+ARMARGDP12 <- arima(RGDP, order = c(2,0,1))
+ARMARGDP7 <- arima(RGDP, order = c(2,0,2))
+ARMARGDP8 <- arima(RGDP, order = c(2,0,3))
+ARMARGDP13 <- arima(RGDP, order = c(3,0,0))
+ARMARGDP14 <- arima(RGDP, order = c(3,0,1))
+ARMARGDP15 <- arima(RGDP, order = c(3,0,2))
+ARMARGDP16 <- arima(RGDP, order = c(3,0,3))
+###b. The Model that has the lowest AIC is ARMA(0,0) with an AIC equal to -528.83.
+#c.
 #--------#
 #6.	Perform the ARMA regression that you determined in Step 5c. Show the table of results in your report (no need to comment on these results for now).
 
