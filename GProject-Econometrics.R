@@ -150,8 +150,13 @@ ARMARGDP16 <- arima(RGDP, order = c(3,0,3))
 
 #--------#
 #7.	Using the residuals from the regression in Step 6:
-acf(model$residuals, type = "correlation")
-Box.test(resid(fit1),type="Ljung",lag=20,fitdf=1) changer fit1
+resid <- residuals(ARMARGDP1)
+plot.ts(resid)
+acf(resid, main="Resid ARMA(0,1)")
+Box.test(resid, lag = 4, type = c("Ljung-Box"))
+Box.test(resid, lag = 8, type = c("Ljung-Box"))
+Box.test(resid, lag = 12, type = c("Ljung-Box"))
+
 #--------#
 #8.	Perform an out-of-sample forecast of the quarters 2020Q1 until 2020Q4. 
 dhp <- EXRSP500
