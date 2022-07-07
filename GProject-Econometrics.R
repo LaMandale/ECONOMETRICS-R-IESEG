@@ -176,9 +176,37 @@ acf(model$residuals, type = "correlation")
 Box.test(resid(fit1),type="Ljung",lag=20,fitdf=1) changer fit1
 #--------#
 #8.	Perform an out-of-sample forecast of the quarters 2020Q1 until 2020Q4. 
+dhp <- EXRSP500
+armadhp <- arima(dhp, order = c(2,0,0))
+fitted <- fitted(armadhp)
+plot.ts(dhp)
+lines(fitted, col = "blue")
+
+f <- (predict(armadhp, se.fit = TRUE, n.ahead = 60))
+
+plot.ts(dhp, xlim = c(300,length(dhp)+60))
+lines((f$pred), col="blue")
+CIhi <- f$pred+2*f$se
+CIlo <- f$pred-2*f$se
+lines(CIhi, col="blue", lty=2)
+lines(CIlo, col="blue", lty=2)
 
 #--------#
 #9.	Compute the GDP forecast, and plot in a graph the original GDP series together with its forecast (can be done either in Excel or in R). Comment on this graph. Tell whether the actual European GDP has already bounced back and reached the lost GDP due to the pandemic, according to the forecasted GDP had the pandemic not occurred.
+gdpf <- Delt(rv_dataPAGE3$GPD)
+armagdpf <- arima(gdpf, order = c(2,0,0))
+fittedgdp <- fitted(armagdpf)
+plot.ts(gdpf)
+lines(fittedgdp, col = "blue")
+
+fgdp <- (predict(armagdpf, se.fit = TRUE, n.ahead = 6))
+
+plot.ts(gdpf, xlim2 = c(300,length(gdpf)+6))
+lines((fgdp$pred), col="blue")
+CIhi <- fgdp$pred+2*fgdp$se
+CIlo <- fgdp$pred-2*fgdp$se
+lines(CIhi, col="blue", lty=2)
+lines(CIlo, col="blue", lty=2)
 
 #--------#
 #10.	Write a conclusion to this case (about 300 words) among which:
