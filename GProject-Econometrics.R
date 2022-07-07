@@ -143,7 +143,7 @@ ARMARGDP13 <- arima(RGDP, order = c(3,0,0))
 ARMARGDP14 <- arima(RGDP, order = c(3,0,1))
 ARMARGDP15 <- arima(RGDP, order = c(3,0,2))
 ARMARGDP16 <- arima(RGDP, order = c(3,0,3))
-###b. The Model that has the lowest AIC is ARMA(0,0) with an AIC equal to -528.83.
+###b. The Model that has the lowest AIC is ARMA(0,1) with an AIC equal to -536.18.
 #c.
 #--------#
 #6.	Perform the ARMA regression that you determined in Step 5c. Show the table of results in your report (no need to comment on these results for now).
